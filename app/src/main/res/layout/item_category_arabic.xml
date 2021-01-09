@@ -43,11 +43,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/mrsmonster"
             android:gravity="center"
             android:maxLines="3"
             android:textColor="@color/white"
             android:textSize="36sp"
+
             app:layout_constraintBottom_toBottomOf="@+id/ivCategory"
             app:layout_constraintEnd_toEndOf="@id/ivCategory"
             app:layout_constraintStart_toStartOf="@id/ivCategory"
