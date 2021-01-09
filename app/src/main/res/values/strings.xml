@@ -1,0 +1,203 @@
+<resources>
+    <string name="app_name">Youtube Tips</string>
+
+    <string name="english">English Channels</string>
+    <string name="arabic">Arabic Channels</string>
+
+    <string name="ideas">Youtube Channel ideas</string>
+    <string name="niche">How to choose a niche for your youtube channel</string>
+    <string name="sound">Best Ways to Record Audio for YouTube Videos</string>
+    <string name="record">How to Shoot a Video for YouTube and tips for Camera Options</string>
+    <string name="lighting">Tips and Tricks For Lighting</string>
+    <string name="editing">Youtube Video Editing</string>
+    <string name="thumbnail">How to make a thumbnail and best tools to make it</string>
+    <string name="beginners">Tips for Beginners! you should pay attention to it</string>
+    <string name="analytics">Youtube Analytics</string>
+    <string name="monetization">How to monetize your youtube channel</string>
+    <string name="keywords">How to use keywords in your videos</string>
+    <string name="mistakes">Mistakes youtubers make</string>
+    <string name="subscribers">How to gain more Subscribers</string>
+    <string name="views">How to gain more Views</string>
+    <string name="grow">How to grow your channel</string>
+    <string name="create_channel">How to create your channel from zero to hero</string>
+    <!--    تخصص   -->
+
+    <string-array name="categoryList">
+        <item>@string/ideas</item>
+        <item>@string/niche</item>
+        <item>@string/create_channel</item>
+        <item>@string/beginners</item>
+        <item>@string/record</item>
+        <item>@string/sound</item>
+        <item>@string/lighting</item>
+        <item>@string/editing</item>
+        <item>@string/mistakes</item>
+        <item>@string/thumbnail</item>
+        <item>@string/analytics</item>
+        <item>@string/monetization</item>
+        <item>@string/keywords</item>
+        <item>@string/subscribers</item>
+        <item>@string/views</item>
+        <item>@string/grow</item>
+    </string-array>
+
+    <integer-array name="categoryListImages">
+        <item>@drawable/ideas</item>
+        <item>@drawable/niche</item>
+        <item>@drawable/create_channel</item>
+        <item>@drawable/beginners</item>
+        <item>@drawable/record</item>
+        <item>@drawable/sound2</item>
+        <item>@drawable/light</item>
+        <item>@drawable/editing1</item>
+        <item>@drawable/mistakes</item>
+        <item>@drawable/thumbnail</item>
+        <item>@drawable/analytics</item>
+        <item>@drawable/monetization2</item>
+        <item>@drawable/keywords</item>
+        <item>@drawable/subscribe</item>
+        <item>@drawable/views</item>
+        <item>@drawable/grow</item>
+    </integer-array>
+
+<!--    <integer-array name="categoryIds">-->
+<!--        <item>1</item>-->
+<!--        <item>2</item>-->
+<!--        <item>3</item>-->
+<!--        <item>4</item>-->
+<!--        <item>5</item>-->
+<!--        <item>6</item>-->
+<!--        <item>7</item>-->
+<!--        <item>8</item>-->
+<!--        <item>9</item>-->
+<!--        <item>10</item>-->
+<!--        <item>11</item>-->
+<!--        <item>12</item>-->
+<!--        <item>13</item>-->
+<!--        <item>14</item>-->
+<!--        <item>15</item>-->
+<!--    </integer-array>-->
+
+    <!--    video id lists-->
+    <string-array name="ideas_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="ideas_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="niche_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="niche_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="sound_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="sound_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="record_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="record_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="editing_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="editing_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="thumbnail_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="thumbnail_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="beginners_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="beginners_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="analytics_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="analytics_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="monetization_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="monetization_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="keywords_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="keywords_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="mistakes_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="mistakes_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="subscribers_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="subscribers_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="views_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="views_english">
+        <item></item>
+    </string-array>
+
+    <!--    تكبير قناة اليوتيوب-->
+    <string-array name="grow_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="grow_english">
+        <item></item>
+    </string-array>
+
+    <string-array name="create_channel_arabic">
+        <item></item>
+    </string-array>
+    <string-array name="create_channel_english">
+        <item></item>
+    </string-array>
+
+</resources>
+
+
+    <!--    الكاتيجوريز:-->
+    <!--    -المواضيع-->
+    <!--    -النيش-->
+    <!--    -الصوت والميكروفونات : ريفيو ميكروفونات-->
+    <!--    -التصوير موبايل اوكاميرا : مراجعات كاميرات-->
+    <!--    -مونتاج موبايل او كمبيوتر-->
+    <!--    -ثامبنايل-->
+    <!--    -keywords-->
+    <!--    title and description- -->
+    <!--    youtube analytics- -->
+    <!--    -كيف انشاء قناة على اليوتيوب.-->
+    <!--    -تفعيل الارباح-->
+

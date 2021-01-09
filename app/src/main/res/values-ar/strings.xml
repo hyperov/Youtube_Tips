@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Youtube Tips</string>
+
+    <string name="english">قنوات إنجليزية</string>
+    <string name="arabic">قنوات عربية</string>
+
+    <string name="ideas">أفكار قنوات يوتيوب</string>
+    <string name="niche">أنواع المحتوى و المشاهدين المهتمين بمحتوى محدد</string>
+    <string name="sound">كيفية تسجيل صوت بطريقة جيدة و أنواع الميكروفونات</string>
+    <string name="record">كيف تحصل على صورة جيدة و أنواع الكاميرات</string>
+    <string name="lighting">كيف تحصل على إضاءة جيدة و أنواع الإضاءة</string>
+    <string name="editing">المونتاج</string>
+    <string name="thumbnail">كيفية عمل صورة مصغرة</string>
+    <string name="beginners">نصائح للمبتدئين فى اليوتيوب يجب أن تنتبه إليها جيدا</string>
+    <string name="analytics">كيف تستخدم احصائيات اليوتيوب</string>
+    <string name="monetization">شروط وكيفية تفعيل الريح بالاعلانات وطرق اخرى للربح</string>
+    <string name="keywords">كيف تستخدم الكلمات الافتتاحية</string>
+    <string name="mistakes">أخطاء يقوم بها اليوتيوبرز يجب أن تحذر منها</string>
+    <string name="subscribers">أفضل الطرق لزيادة عدد المشتركين</string>
+    <string name="views">أفضل الطرق لزيادة عدد المشاهدات</string>
+    <string name="grow">طرق تكبير قناتك على اليوتيوب</string>
+    <string name="create_channel">كيف تقوم بإنشاء قناتك على اليوتيوب من الصفر</string>
+</resources>
