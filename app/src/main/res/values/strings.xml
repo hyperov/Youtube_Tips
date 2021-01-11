@@ -43,8 +43,8 @@
 
     <integer-array name="categoryListImages">
         <item>@drawable/ideas</item>
-        <item>@drawable/niche</item>
-        <item>@drawable/create_channel</item>
+        <item>@drawable/niche2</item>
+        <item>@drawable/create_channel2</item>
         <item>@drawable/beginners</item>
         <item>@drawable/record</item>
         <item>@drawable/sound2</item>
@@ -53,7 +53,7 @@
         <item>@drawable/mistakes</item>
         <item>@drawable/thumbnail</item>
         <item>@drawable/analytics</item>
-        <item>@drawable/monetization2</item>
+        <item>@drawable/monetization3</item>
         <item>@drawable/keywords</item>
         <item>@drawable/subscribe</item>
         <item>@drawable/views</item>

@@ -1,4 +1,4 @@
-package com.islam.hesn.youtubetips.categories.view
+package com.islam.hesn.youtubetips.category.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +31,7 @@ class CategoryRecyclerViewAdapter(
         fun bind(category: CategoryItem, position: Int) = with(itemView) {
             tvCategoryTitle.text = category.name
             Picasso.get().load(category.imageRes).into(ivCategory)
+            setOnClickListener { }
         }
 //        override fun toString(): String {
 //            return super.toString() + " '" + contentView.text + "'"

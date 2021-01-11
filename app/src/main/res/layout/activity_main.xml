@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/dark_red"
-        app:tabMode="fixed"
-        app:tabIndicatorColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabBackground="@color/teal_light"
+        app:tabIndicatorColor="@color/pink_900_primary"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/pink_light">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -31,14 +33,15 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tablayout">
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tablayout"
+        app:navGraph="@navigation/nav_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>

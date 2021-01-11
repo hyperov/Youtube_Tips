@@ -1,12 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.YoutubeTips" parent="Theme.MaterialComponents.Bridge">
+    <style name="Theme.YoutubeTips" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/main_red</item>
-        <item name="colorPrimaryVariant">@color/dark_red</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <!--        <item name="colorPrimary">@color/main_red</item>-->
+        <!--        <item name="colorPrimaryVariant">@color/dark_red</item>-->
+        <!--        <item name="colorOnPrimary">@color/blue_grey_700</item>-->
+
+        <item name="colorPrimary">@color/teal_primary</item>
+        <item name="colorPrimaryDark">@color/teal_dark</item>
+        <item name="colorPrimaryVariant">@color/teal_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/pink_light</item>
+        <item name="colorSecondary">@color/pink_900_primary</item>
         <item name="colorSecondaryVariant">@color/pink_light</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->

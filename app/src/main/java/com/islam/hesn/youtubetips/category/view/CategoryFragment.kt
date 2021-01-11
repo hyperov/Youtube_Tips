@@ -1,4 +1,4 @@
-package com.islam.hesn.youtubetips.categories.view
+package com.islam.hesn.youtubetips.category.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,9 @@ import androidx.fragment.app.activityViewModels
 import com.islam.hesn.youtubetips.R
 import com.islam.hesn.youtubetips.categories.model.CategoryItem
 import com.islam.hesn.youtubetips.home.SharedViewModel
-import kotlinx.android.synthetic.main.fragment_category_list_arabic.*
 
 
-class CategoryListFragment : Fragment() {
+class CategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -21,7 +20,7 @@ class CategoryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_category_list_arabic, container, false)
+        return inflater.inflate(R.layout.fragment_category_arabic, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,12 +29,8 @@ class CategoryListFragment : Fragment() {
     }
 
     private fun setup() {
-        val adapter =
-            CategoryListRecyclerViewAdapter(loadResources()) { category: CategoryItem ->
-                sharedViewModel.selectedCategory.value = category
-//                findNavController().navigate(R.id.)
-            }
-        rvCategoryList.adapter = adapter
+        val adapter = CategoryRecyclerViewAdapter(loadResources())
+//        rvCategoryList.adapter = adapter
     }
 
     private fun loadResources(): List<CategoryItem> {
