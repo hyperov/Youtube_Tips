@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.islam.hesn.youtubetips.R
 import com.islam.hesn.youtubetips.categories.model.CategoryItem
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_category_arabic.view.*
+import kotlinx.android.synthetic.main.item_category.view.*
 
 class CategoryRecyclerViewAdapter(
     private val values: List<CategoryItem>
@@ -15,7 +15,7 @@ class CategoryRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_category_arabic, parent, false)
+            .inflate(R.layout.item_category, parent, false)
         return ViewHolder(view)
     }
 

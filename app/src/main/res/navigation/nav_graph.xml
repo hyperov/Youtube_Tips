@@ -3,21 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/categoryListFragment">
-
+    app:startDestination="@id/arabicCategoryFragment">
     <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.islam.hesn.youtubetips.category.view.CategoryFragment"
-        android:label="CategoryFragment"
-        tools:layout="@layout/fragment_category_arabic"
-        />
-    <fragment
-        android:id="@+id/categoryListFragment"
-        android:name="com.islam.hesn.youtubetips.categories.view.CategoryListFragment"
-        android:label="fragment_category_arabic_list"
-        tools:layout="@layout/fragment_category_list_arabic" >
-        <action
-            android:id="@+id/action_categoryListFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-    </fragment>
+        android:id="@+id/arabicCategoryFragment"
+        android:name="com.islam.hesn.youtubetips.category.view.ArabicCategoryFragment"
+        android:label="fragment_category_arabic"
+        tools:layout="@layout/fragment_category_arabic" />
 </navigation>
