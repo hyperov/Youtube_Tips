@@ -11,7 +11,6 @@ import com.islam.hesn.youtubetips.categories.model.CategoryItem
 import com.islam.hesn.youtubetips.home.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_category_arabic.*
 
-
 class ArabicCategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()

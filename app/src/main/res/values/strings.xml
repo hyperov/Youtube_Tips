@@ -130,6 +130,108 @@
         <item>vsPMJ-qqNtg</item>
     </string-array>
 
+    <string-array name="create_channel_arabic">
+        <item>bphIfrXffjI</item>
+        <item>3JWJH8tLspc</item>
+        <item>T75ii2aGFs4</item>
+        <item>sFVV_QMJsNw</item>
+        <item>v_rJlzWtcEk</item>
+        <item>gXrMEm87AiE</item>
+        <item>DFQrVeRGKgw</item>
+        <item>QY05kHfGRkA</item>
+        <item>GBD-1cGbF5w</item>
+        <item>D-rGkna1YfY</item>
+        <item>gwlohOWgcLk</item>
+        <item>rmtaw-3GDCk</item>
+        <item>ybDGNi0XWAU</item>
+        <item>EgNAsTXaCl4</item>
+        <item>h2KpGqxMd9g</item>
+    </string-array>
+    <string-array name="create_channel_english">
+        <item>6o7qODwjEz8</item>
+        <item>shtxwa4CkGo</item>
+        <item>-HeJ0b9yqKE</item>
+        <item>H7Z2TL5mVws</item>
+        <item>BbeNf4Irzlo</item>
+        <item>r74p6y4uKbw</item>
+        <item>N_9KLmhc3IE</item>
+        <item>9IIQHyG3FZM</item>
+        <item>hwONmhK_pYQ</item>
+        <item>FCPePOHu-3Y</item>
+        <item>oWwsmFQt52c</item>
+        <item>c_eRcdE8NKA</item>
+        <item>bs2odsqBBMM</item>
+    </string-array>
+
+    <string-array name="beginners_arabic">
+        <item>Mw2DIQXiywk</item>
+        <item>Agy4_yEIn54</item>
+        <item>PkhvVhBaZG8</item>
+        <item>Hp2vPUs1Xwk</item>
+        <item>jSc8JRnAKMY</item>
+        <item>92cQJ7SSHhc</item>
+        <item>C0MaWrvpZZ0</item>
+        <item>5KeeF6Vfm90</item>
+        <item>gdMG2tsCM6o</item>
+        <item>Sms3U9vFDD4</item>
+        <item>nY4AlV3GYeQ</item>
+        <item>55lLGnRM6M4</item>
+        <item>qgGuFZXi_js</item>
+        <item>kSxr9X-YhOU</item>
+    </string-array>
+    <string-array name="beginners_english">
+        <item>bVu8OWN90eY</item>//pewdipie
+        <item>WN-GnOM3oHw</item>
+        <item>foYyeGLf9yU</item>
+        <item>cCpvVDc0Glw</item>
+        <item>ek53TQ9U35o</item>
+        <item>WlnGwOF9yvY</item>
+        <item>50S7z6d6GLw</item>
+        <item>qYlEXvtbho0</item>
+        <item>54Qs0sGLZpc</item>
+        <item>TK4lwIzWSsQ</item>
+        <item>Lq1oxjoKeKk</item>
+        <item>M_SfR-ntmDg</item>
+        <item>54Qs0sGLZpc</item>
+    </string-array>
+
+    <string-array name="record_arabic">
+        <item>LO6cgUx_5tY</item>
+        <item>3jsTQfHyduY</item>
+        <item>B__-5sHWlB8</item>
+        <item>7V1K20vOJOk</item>
+        <item>Av-Vr3QKIYU</item>
+        <item>yRwiX9dnc4c</item>
+        <item>8BlkRg6UXhA</item>
+        <item>8gWtPMgFcyA</item>
+        <item>1ahnMxYdPCs</item>
+        <item>wAs_8zFEcyg</item>
+        <item>Kpis9oyEMWA</item>
+        <item>o3A6hhH6sXY</item>
+        <item>TDPifkE4KAc</item>
+        <item>bSYnxElcaWo</item>
+        <item>j8ZlScfOZL4</item>
+    </string-array>
+    <string-array name="record_english">
+        <item>kRsmmCj0iiU</item>
+        <item>tkqosTC8G1g</item>
+        <item>RbhCSDdx2Ac</item>
+        <item>winHm-S6oZM</item>
+        <item>gTNj0QCvCw0</item>
+        <item>_PX142Af1jc</item>
+        <item>jpvzpzBYwEk</item>
+        <item>-rEeqUnxbdQ</item>
+        <item>gDhVLdNHIYo</item>
+        <item>z1MbF9EczQU</item>
+        <item>bphQgox3TEo</item>
+        <item>tdn1gGadwQo</item>
+        <item>actb5T4qbos</item>
+        <item>MeBNSOTa1_c</item>
+        <item>8YiwBsTQ_c0</item>
+        <item>bqn8NOAC9BE</item>
+        <item>JwhsPdN2RNg</item>
+    </string-array>
+
     <string-array name="sound_arabic">
         <item>K1hWUMxKqDc</item>
         <item>52212YSJTXs</item>
@@ -170,43 +272,6 @@
         <item>LUOYsoXu3f4</item>
         <item>1oqDz6GUKzA</item>
         <item>nBdODneCKCA</item>
-    </string-array>
-
-    <string-array name="record_arabic">
-        <item>LO6cgUx_5tY</item>
-        <item>3jsTQfHyduY</item>
-        <item>B__-5sHWlB8</item>
-        <item>7V1K20vOJOk</item>
-        <item>Av-Vr3QKIYU</item>
-        <item>yRwiX9dnc4c</item>
-        <item>8BlkRg6UXhA</item>
-        <item>8gWtPMgFcyA</item>
-        <item>1ahnMxYdPCs</item>
-        <item>wAs_8zFEcyg</item>
-        <item>Kpis9oyEMWA</item>
-        <item>o3A6hhH6sXY</item>
-        <item>TDPifkE4KAc</item>
-        <item>bSYnxElcaWo</item>
-        <item>j8ZlScfOZL4</item>
-    </string-array>
-    <string-array name="record_english">
-        <item>kRsmmCj0iiU</item>
-        <item>tkqosTC8G1g</item>
-        <item>RbhCSDdx2Ac</item>
-        <item>winHm-S6oZM</item>
-        <item>gTNj0QCvCw0</item>
-        <item>_PX142Af1jc</item>
-        <item>jpvzpzBYwEk</item>
-        <item>-rEeqUnxbdQ</item>
-        <item>gDhVLdNHIYo</item>
-        <item>z1MbF9EczQU</item>
-        <item>bphQgox3TEo</item>
-        <item>tdn1gGadwQo</item>
-        <item>actb5T4qbos</item>
-        <item>MeBNSOTa1_c</item>
-        <item>8YiwBsTQ_c0</item>
-        <item>bqn8NOAC9BE</item>
-        <item>JwhsPdN2RNg</item>
     </string-array>
 
     <string-array name="light_arabic">
@@ -267,7 +332,6 @@
         <item>ZBSXtbzxINg</item>
         <item>ENFOJlI5cuY</item>
     </string-array>
-
     <string-array name="editing_english">
         <item>J0Es7gvUbFA</item>
         <item>oC3gXr1s_aU</item>
@@ -284,6 +348,35 @@
         <item>Tgp0utWXyjY</item>
         <item>GBOqwuzxmNk</item>
         <item>84uLZ2pPebI</item>
+    </string-array>
+
+    <string-array name="mistakes_arabic">
+        <item>NyPERk0m3l0</item>
+        <item>HosmwevutiM</item>
+        <item>V1nIYUupL-4</item>
+        <item>k-7IZDije-I</item>
+        <item>wuvRZl30rpA</item>
+        <item>EcTfYJK6fyY</item>
+        <item>KZ3G9PazlrU</item>
+        <item>36lQ_bLPrTQ</item>
+        <item>G82nyBrLoX4</item>
+        <item>WzKCEPFmAKs</item>
+        <item>3rDT4DeAljQ</item>
+        <item>2ax-bOWnXL8</item>
+    </string-array>
+    <string-array name="mistakes_english">
+        <item>lCi0ldq3UGk</item>
+        <item>xOpJdHiIwhQ</item>
+        <item>Ri7qDWUSNhI</item>
+        <item>NNKQOi-k50g</item>
+        <item>YCTdsH6iNZc</item>
+        <item>nEtPJF0D9o8</item>
+        <item>50S7z6d6GLw</item>
+        <item>YtAY8OZcztw</item>
+        <item>kyOaI4-RJms</item>
+        <item>_-vbL3rss4I</item>
+        <item>fHm79PNmuqQ</item>
+        <item>6RTQ7KyVzHs</item>
     </string-array>
 
     <string-array name="thumbnail_arabic">
@@ -326,38 +419,6 @@
         <item>485yYXLZqxc</item>
         <item>r_2tsLb__-E</item>
         <item>U30d6mG_jaI</item>
-    </string-array>
-
-    <string-array name="beginners_arabic">
-        <item>Mw2DIQXiywk</item>
-        <item>Agy4_yEIn54</item>
-        <item>PkhvVhBaZG8</item>
-        <item>Hp2vPUs1Xwk</item>
-        <item>jSc8JRnAKMY</item>
-        <item>92cQJ7SSHhc</item>
-        <item>C0MaWrvpZZ0</item>
-        <item>5KeeF6Vfm90</item>
-        <item>gdMG2tsCM6o</item>
-        <item>Sms3U9vFDD4</item>
-        <item>nY4AlV3GYeQ</item>
-        <item>55lLGnRM6M4</item>
-        <item>qgGuFZXi_js</item>
-        <item>kSxr9X-YhOU</item>
-    </string-array>
-    <string-array name="beginners_english">
-        <item>bVu8OWN90eY</item>//pewdipie
-        <item>WN-GnOM3oHw</item>
-        <item>foYyeGLf9yU</item>
-        <item>cCpvVDc0Glw</item>
-        <item>ek53TQ9U35o</item>
-        <item>WlnGwOF9yvY</item>
-        <item>50S7z6d6GLw</item>
-        <item>qYlEXvtbho0</item>
-        <item>54Qs0sGLZpc</item>
-        <item>TK4lwIzWSsQ</item>
-        <item>Lq1oxjoKeKk</item>
-        <item>M_SfR-ntmDg</item>
-        <item>54Qs0sGLZpc</item>
     </string-array>
 
     <string-array name="analytics_arabic">
@@ -464,35 +525,6 @@
         <item>9Pr4rlgNaY8</item>
     </string-array>
 
-    <string-array name="mistakes_arabic">
-        <item>NyPERk0m3l0</item>
-        <item>HosmwevutiM</item>
-        <item>V1nIYUupL-4</item>
-        <item>k-7IZDije-I</item>
-        <item>wuvRZl30rpA</item>
-        <item>EcTfYJK6fyY</item>
-        <item>KZ3G9PazlrU</item>
-        <item>36lQ_bLPrTQ</item>
-        <item>G82nyBrLoX4</item>
-        <item>WzKCEPFmAKs</item>
-        <item>3rDT4DeAljQ</item>
-        <item>2ax-bOWnXL8</item>
-    </string-array>
-    <string-array name="mistakes_english">
-        <item>lCi0ldq3UGk</item>
-        <item>xOpJdHiIwhQ</item>
-        <item>Ri7qDWUSNhI</item>
-        <item>NNKQOi-k50g</item>
-        <item>YCTdsH6iNZc</item>
-        <item>nEtPJF0D9o8</item>
-        <item>50S7z6d6GLw</item>
-        <item>YtAY8OZcztw</item>
-        <item>kyOaI4-RJms</item>
-        <item>_-vbL3rss4I</item>
-        <item>fHm79PNmuqQ</item>
-        <item>6RTQ7KyVzHs</item>
-    </string-array>
-
     <string-array name="subscribers_arabic">
         <item>wtWQIXopm9Y</item>
         <item>3P4UQpNbkPY</item>
@@ -595,39 +627,7 @@
         <item>0otm3-2u9-4</item>
     </string-array>
 
-    <string-array name="create_channel_arabic">
-        <item>bphIfrXffjI</item>
-        <item>3JWJH8tLspc</item>
-        <item>T75ii2aGFs4</item>
-        <item>sFVV_QMJsNw</item>
-        <item>v_rJlzWtcEk</item>
-        <item>gXrMEm87AiE</item>
-        <item>DFQrVeRGKgw</item>
-        <item>QY05kHfGRkA</item>
-        <item>GBD-1cGbF5w</item>
-        <item>D-rGkna1YfY</item>
-        <item>gwlohOWgcLk</item>
-        <item>rmtaw-3GDCk</item>
-        <item>ybDGNi0XWAU</item>
-        <item>EgNAsTXaCl4</item>
-        <item>h2KpGqxMd9g</item>
-    </string-array>
 
-    <string-array name="create_channel_english">
-        <item>6o7qODwjEz8</item>
-        <item>shtxwa4CkGo</item>
-        <item>-HeJ0b9yqKE</item>
-        <item>H7Z2TL5mVws</item>
-        <item>BbeNf4Irzlo</item>
-        <item>r74p6y4uKbw</item>
-        <item>N_9KLmhc3IE</item>
-        <item>9IIQHyG3FZM</item>
-        <item>hwONmhK_pYQ</item>
-        <item>FCPePOHu-3Y</item>
-        <item>oWwsmFQt52c</item>
-        <item>c_eRcdE8NKA</item>
-        <item>bs2odsqBBMM</item>
-    </string-array>
 
 </resources>
 
