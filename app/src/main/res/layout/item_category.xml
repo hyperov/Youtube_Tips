@@ -57,5 +57,4 @@
             tools:text="How to choose a niche for your youtube channel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </androidx.cardview.widget.CardView>

@@ -10,6 +10,7 @@
         android:name="com.islam.hesn.youtubetips.CategoryArabicFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/white"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/adView"
