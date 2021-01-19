@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_red">#ff0000</color>
-    <color name="dark_red">#c20000</color>
+    <color name="main_red">#d50000</color>
+    <color name="dark_red">#b71c1c</color>
+    <color name="light_red">#ef5350</color>
     <color name="pink_light_1">#FFBFBF</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -21,4 +22,7 @@
     <color name="pink_900_primary">#880e4f</color>
     <color name="pink_dark">#560027</color>
     <color name="pink_light">#bc477b</color>
+
+    <color name="amber_200">#ffe082</color>
+    <color name="amber_700">#ffa000</color>
 </resources>

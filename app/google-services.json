@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1091684664287",
+    "project_id": "youtube-tips-301802",
+    "storage_bucket": "youtube-tips-301802.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091684664287:android:2995f55c0a78b0132c3a6a",
+        "android_client_info": {
+          "package_name": "com.android.youtubetips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091684664287-vbo2amhhv81o7n5aklfvj19kgl33knin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA781msIYO7gZgUlMZnKB-7I-nVxc9aX2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091684664287-vbo2amhhv81o7n5aklfvj19kgl33knin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

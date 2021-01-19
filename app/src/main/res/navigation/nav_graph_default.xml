@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.islam.hesn.youtubetips.categories.view.CategoriesFragment"
-        android:label="CategoriesFragment"
+        android:name="com.android.youtubetips.categories.view.CategoriesFragment"
+        android:label="@string/youtube_tips"
         tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_categoriesFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+            app:destination="@id/mainCategoryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.islam.hesn.youtubetips.category.view.MainCategoryFragment"
-        android:label="MainCategoryFragment"
+        android:id="@+id/mainCategoryFragment"
+        android:name="com.android.youtubetips.category.view.MainCategoryFragment"
+        android:label="@string/youtube_channels"
         tools:layout="@layout/fragment_category_main" />
 
 </navigation>

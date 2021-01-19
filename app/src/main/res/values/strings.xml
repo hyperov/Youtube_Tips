@@ -4,6 +4,9 @@
     <string name="english">English Channels</string>
     <string name="arabic">Arabic Channels</string>
 
+    <string name="english_lang">English</string>
+    <string name="arabic_lang">Arabic</string>
+
     <string name="ideas">Youtube Channel ideas</string>
     <string name="niche">How to choose a niche for your youtube channel</string>
     <string name="sound">Best Ways to Record Audio for YouTube Videos</string>
@@ -20,6 +23,13 @@
     <string name="views">How to gain more Views</string>
     <string name="grow">How to grow your channel</string>
     <string name="create_channel">How to create your channel from zero to hero</string>
+    <string name="youtube_tips">Youtube Tips</string>
+    <string name="youtube_channels">Choose Language</string>
+    <string name="english_channels">English channels</string>
+    <string name="arabic_channels">Arabic Channels</string>
+    <string name="categories">categories</string>
+    <string name="language">language</string>
+    <string name="contact_us">Contact Us</string>
     <!--    تخصص   -->
 
     <string-array name="categoryList">

@@ -21,4 +21,14 @@
     <string name="views">أفضل الطرق لزيادة عدد المشاهدات</string>
     <string name="grow">طرق تكبير قناتك على اليوتيوب</string>
     <string name="create_channel">كيف تقوم بإنشاء قناتك على اليوتيوب من الصفر</string>
+
+    <string name="youtube_tips">نصائح اليوتيوب</string>
+    <string name="youtube_channels">اختر اللغة</string>
+    <string name="english_channels">القنوات الأجنبية</string>
+    <string name="arabic_channels">القنوات العربية</string>
+    <string name="english_lang">اللغة الإنجليزية</string>
+    <string name="arabic_lang">اللغة العربية</string>
+    <string name="categories">categories</string>
+    <string name="language">language</string>
+    <string name="contact_us">Contact Us</string>
 </resources>
