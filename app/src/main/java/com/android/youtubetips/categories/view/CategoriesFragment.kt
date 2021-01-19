@@ -13,6 +13,10 @@ import com.android.youtubetips.home.COUNTER_FOR_REVIEW
 import com.android.youtubetips.home.Prefs
 import com.android.youtubetips.home.SharedViewModel
 import com.android.youtubetips.home.putAny
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_categories.*
 
@@ -20,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_categories.*
 class CategoriesFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+//    private lateinit var adView: AdView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +37,8 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
+        setupBannerAds()
+        setupAdsListeners()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
     }
 
@@ -67,5 +74,41 @@ class CategoriesFragment : Fragment() {
         return categories
     }
 
+    private fun setupAdsListeners() {
+        adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", true)
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                // Code to be executed when an ad request fails.
+                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", false)
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        }
+    }
+
+    private fun setupBannerAds() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
 
 }

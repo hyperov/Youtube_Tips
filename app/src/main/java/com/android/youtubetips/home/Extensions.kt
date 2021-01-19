@@ -12,6 +12,7 @@ import com.android.youtubetips.R
 lateinit var Prefs: SharedPreferences
 const val IS_CONNECTED = "IS_CONNECTED"
 const val COUNTER_FOR_REVIEW = "COUNTER_FOR_REVIEW"
+const val COUNTER_FOR_INTERSTITAL_AD = "COUNTER_FOR_INTERSTITAL_AD"
 const val MAX_COUNT_REVIEW_DIALOG_SHOW = 10
 
 

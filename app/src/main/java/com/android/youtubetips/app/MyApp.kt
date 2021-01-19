@@ -7,6 +7,7 @@ import com.android.youtubetips.home.COUNTER_FOR_REVIEW
 import com.android.youtubetips.home.Prefs
 import com.android.youtubetips.home.putAny
 import com.android.youtubetips.home.registerNetworkConnectionEvents
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.HiltAndroidApp
@@ -16,7 +17,7 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        MobileAds.initialize(this) { }
         if (!BuildConfig.DEBUG) {
             Firebase.crashlytics.setCrashlyticsCollectionEnabled(true)
         }

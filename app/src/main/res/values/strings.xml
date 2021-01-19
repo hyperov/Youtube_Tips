@@ -30,6 +30,15 @@
     <string name="categories">categories</string>
     <string name="language">language</string>
     <string name="contact_us">Contact Us</string>
+
+    //testing
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstital_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+
+    <!--   //production-->
+    <!--    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/2977437389</string>-->
+    <!--    <string name="interstital_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/8968130666</string>-->
+
     <!--    تخصص   -->
 
     <string-array name="categoryList">
@@ -636,7 +645,6 @@
         <item>ADPFEw-7FtU</item>
         <item>0otm3-2u9-4</item>
     </string-array>
-
 
 
 </resources>

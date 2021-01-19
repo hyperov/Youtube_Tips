@@ -9,10 +9,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.android.youtubetips.R
+import com.google.android.gms.ads.*
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -28,28 +30,84 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tool_bar.*
 import java.util.*
 
+
 const val MY_REQUEST_CODE: Int = 111
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
     var reviewInfo: ReviewInfo? = null
     lateinit var manager: ReviewManager
 
     private lateinit var appUpdateInfoTask: Task<AppUpdateInfo>
     private lateinit var appUpdateManager: AppUpdateManager
 
+    private lateinit var mInterstitialAd: InterstitialAd
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        MediationTestSuite.launch(this)
         setContentView(R.layout.activity_main)
+        RequestConfiguration.Builder().setTestDeviceIds(listOf("46016FF533D6D3CFE1F15C95AD50B4D1"))
         setSupportActionBar(toolbar)
         initReviews()
         initUpdates()
+        initializeAds()
+        setupInterstitalAdsListeners()
     }
+
+    private fun setupInterstitalAdsListeners() {
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                FirebaseCrashlytics.getInstance().setCustomKey("INTERSTITAL_AD_LOADED", true)
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                // Code to be executed when an ad request fails.
+                FirebaseCrashlytics.getInstance().setCustomKey("INTERSTITAL_AD_LOADED", false)
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when the ad is displayed.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the interstitial ad is closed.
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
+    }
+
+    private fun initializeAds() {
+        //interstital ads
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = getString(R.string.interstital_ad_unit_id)
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        showAds()
+    }
+
+    private fun showAds() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        } else {
+
+        }
+    }
+
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
@@ -57,6 +115,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         resumeUpdate()
+        showAds()
         if (Prefs.getInt(COUNTER_FOR_REVIEW, 0) >= MAX_COUNT_REVIEW_DIALOG_SHOW)
             askForReview(reviewInfo, manager)
     }
@@ -115,11 +174,12 @@ class MainActivity : AppCompatActivity() {
 
                 // Log error and continue with the flow
                 FirebaseCrashlytics.getInstance().setCustomKey("REVIEWS_API_DIALOG_SHOW", false)
-
+                showAds()
             }.addOnCompleteListener { _ ->
 
                 FirebaseCrashlytics.getInstance().setCustomKey("REVIEWS_API_DIALOG_SHOW", true)
                 Prefs.putAny(COUNTER_FOR_REVIEW, 0)
+                showAds()
             }
         }
     }
@@ -181,21 +241,33 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == MY_REQUEST_CODE) {
-            when(resultCode) {
+            when (resultCode) {
                 Activity.RESULT_CANCELED -> {
-                    FirebaseCrashlytics.getInstance().setCustomKey("UPDATE_API_DOWNLOAD_CANCELED", "UPDATE_API_DIALOG_CANCELED")
+                    FirebaseCrashlytics.getInstance().setCustomKey(
+                        "UPDATE_API_DOWNLOAD_CANCELED",
+                        "UPDATE_API_DIALOG_CANCELED"
+                    )
+                    showAds()
                     checkForUpdates()
                 }
                 Activity.RESULT_OK -> {
-                    Log.d(this::class.simpleName,"Update Success! Result code: $resultCode")
-                    FirebaseCrashlytics.getInstance().setCustomKey("UPDATE_API_DOWNLOAD_SUCCESS", "UPDATE_API_DOWNLOAD_SUCCESS")
+                    Log.d(this::class.simpleName, "Update Success! Result code: $resultCode")
+                    FirebaseCrashlytics.getInstance().setCustomKey(
+                        "UPDATE_API_DOWNLOAD_SUCCESS",
+                        "UPDATE_API_DOWNLOAD_SUCCESS"
+                    )
+                    showAds()
                 }
-                ActivityResult.RESULT_IN_APP_UPDATE_FAILED->{
-                    Log.d(this::class.simpleName,"Update flow failed! Result code: $resultCode")
-                    FirebaseCrashlytics.getInstance().setCustomKey("UPDATE_API_DOWNLOAD_FAILED", "UPDATE_API_DOWNLOAD_FAILED")
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
+                    Log.d(this::class.simpleName, "Update flow failed! Result code: $resultCode")
+                    FirebaseCrashlytics.getInstance().setCustomKey(
+                        "UPDATE_API_DOWNLOAD_FAILED",
+                        "UPDATE_API_DOWNLOAD_FAILED"
+                    )
                     // If the update is cancelled or fails,
                     // you can request to start the update again.
                     // Request the update.
+                    showAds()
                     checkForUpdates()
                 }
             }
