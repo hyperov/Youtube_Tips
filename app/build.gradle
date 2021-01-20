@@ -113,6 +113,16 @@ dependencies {
 
     implementation project(':nativetemplates')
 
+    //ad sources
+    implementation 'com.adcolony:sdk:4.4.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.ads.mediation:adcolony:4.3.0.0'
+    implementation 'com.google.ads.mediation:unity:3.6.0.0'
+    implementation 'com.noqoush.adfalcon.android.sdk:adfalcon-sdk:5.2.0'
+    implementation 'com.google.ads.mediation.adfalcon:admob-mediation-adapter:2.1.0'
+    implementation 'com.startapp:inapp-sdk:4.6.3'
+    implementation 'com.startapp:admob-mediation:2.0.0'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -10,6 +10,7 @@ import com.android.youtubetips.home.registerNetworkConnectionEvents
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
+import com.startapp.sdk.adsbase.StartAppSDK
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -18,6 +19,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         MobileAds.initialize(this) { }
+        StartAppSDK.setTestAdsEnabled(true)
         if (!BuildConfig.DEBUG) {
             Firebase.crashlytics.setCrashlyticsCollectionEnabled(true)
         }

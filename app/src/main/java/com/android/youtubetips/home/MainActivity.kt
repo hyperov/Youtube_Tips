@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.android.youtubetips.R
+import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.*
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -49,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        MediationTestSuite.launch(this)
         setContentView(R.layout.activity_main)
-        RequestConfiguration.Builder().setTestDeviceIds(listOf("46016FF533D6D3CFE1F15C95AD50B4D1"))
         setSupportActionBar(toolbar)
         initReviews()
         initUpdates()
@@ -115,10 +115,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         resumeUpdate()
-        showAds()
         if (Prefs.getInt(COUNTER_FOR_REVIEW, 0) >= MAX_COUNT_REVIEW_DIALOG_SHOW)
             askForReview(reviewInfo, manager)
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)

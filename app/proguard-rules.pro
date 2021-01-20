@@ -14,8 +14,48 @@
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+-printusage usage.txt
+
+//ad falcon
+#-keep class com.noqoush.adfalcon.android.sdk.** {*;}
+#
+#-keep class com.google.ads.mediation.adfalcon.** {*;}
+#
+#-keep public class com.google.android.gms.ads.** {
+#
+#public *;
+#
+#}
+#
+#-keep public class com.google.ads.** {
+#
+#public *;
+#
+#}
+
+//startapp - start.io
+-keep class com.startapp.** {
+      *;
+}
+
+-keep class com.truenet.** {
+      *;
+}
+
+-keepattributes Exceptions, InnerClasses, Signature, Deprecated, SourceFile,
+LineNumberTable, *Annotation*, EnclosingMethod
+-dontwarn android.webkit.JavascriptInterface
+-dontwarn com.startapp.**
+
+-dontwarn org.jetbrains.annotations.**
