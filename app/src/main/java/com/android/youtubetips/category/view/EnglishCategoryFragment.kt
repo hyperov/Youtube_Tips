@@ -17,7 +17,9 @@ import com.google.android.gms.ads.*
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.fragment_category.adView
 
 @AndroidEntryPoint
 class EnglishCategoryFragment : Fragment() {
@@ -39,6 +41,8 @@ class EnglishCategoryFragment : Fragment() {
         observeData()
         setup()
         setupTitle()
+        setupBannerAds()
+        setupAdsListeners()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
     }
 
@@ -65,6 +69,43 @@ class EnglishCategoryFragment : Fragment() {
             }
             rvCategory.adapter = adapter
         })
+    }
+
+    private fun setupAdsListeners() {
+        adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", true)
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                // Code to be executed when an ad request fails.
+                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", false)
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        }
+    }
+
+    private fun setupBannerAds() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
 }

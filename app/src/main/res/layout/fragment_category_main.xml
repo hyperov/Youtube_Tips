@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
@@ -16,8 +16,8 @@
         app:tabIndicatorColor="#ffa000"
         app:tabIndicatorHeight="6dp"
         app:tabMode="fixed"
-        app:tabTextColor="@color/white"
-        app:tabSelectedTextColor="@color/amber_200">
+        app:tabSelectedTextColor="@color/amber_200"
+        app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -40,20 +40,12 @@
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         app:defaultNavHost="false"
-        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tablayout"
         app:navGraph="@navigation/nav_graph"
         tools:context="com.android.youtubetips.home.MainActivity" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:adSize="BANNER"
-        app:adUnitId="@string/banner_ad_unit_id"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
