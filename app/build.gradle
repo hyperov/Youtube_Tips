@@ -17,6 +17,16 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    signingConfigs {
+
+        release {
+            storeFile file("youtube_tips.jks")
+            storePassword '0109904219'
+            keyAlias 'youtube_tips_keystore'
+            keyPassword '0109904219'
+        }
+
+    }
     defaultConfig {
         applicationId "com.android.youtubetips"
         minSdkVersion 21
@@ -36,15 +46,17 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }

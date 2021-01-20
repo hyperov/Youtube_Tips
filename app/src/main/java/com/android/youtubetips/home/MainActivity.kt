@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
                 FirebaseCrashlytics.getInstance().setCustomKey("INTERSTITAL_AD_LOADED", true)
+
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -147,14 +148,12 @@ class MainActivity : AppCompatActivity() {
         val resources: Resources = activity.resources
         val config: Configuration = resources.configuration
         config.setLocale(locale)
-//        createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
         finish()
         startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun initReviews() {
-
         manager = ReviewManagerFactory.create(this)
         manager.requestReviewFlow().addOnCompleteListener { request ->
             if (request.isSuccessful) {

@@ -27,7 +27,7 @@
 
 -printusage usage.txt
 
-//ad falcon
+
 #-keep class com.noqoush.adfalcon.android.sdk.** {*;}
 #
 #-keep class com.google.ads.mediation.adfalcon.** {*;}
@@ -44,7 +44,7 @@
 #
 #}
 
-//startapp - start.io
+#startapp - start.io
 -keep class com.startapp.** {
       *;
 }
@@ -59,3 +59,47 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn com.startapp.**
 
 -dontwarn org.jetbrains.annotations.**
+
+#firebase-ads
+-keep public class com.google.firebase.analytics.FirebaseAnalytics {
+    public *;
+}
+
+-keep public class com.google.android.gms.measurement.AppMeasurement {
+    public *;
+}
+
+#UNITY ADS
+# Keep JavascriptInterface for WebView bridge
+-keepattributes JavascriptInterface
+# Sometimes keepattributes is not enough to keep annotations
+-keep class android.webkit.JavascriptInterface {
+   *;
+}
+# Keep all classes in Unity Ads package
+-keep class com.unity3d.ads.** {
+   *;
+}
+# Keep all classes in Unity Services package
+-keep class com.unity3d.services.** {
+   *;
+}
+-dontwarn com.google.ar.core.**
+-dontwarn com.unity3d.services.**
+-dontwarn com.ironsource.adapters.unityads.**
+
+
+
+-keep class com.android.youtubetips.categories.model.CategoryItem { *; }
+-keep class com.android.youtubetips.category.model.response.YoutubeCategoryResponse { *; }
+-keep class com.android.youtubetips.category.model.response.VideoItem { *; }
+-keep class com.android.youtubetips.category.model.response.Thumbnails { *; }
+-keep class com.android.youtubetips.category.model.response.Standard { *; }
+-keep class com.android.youtubetips.category.model.response.Snippet { *; }
+-keep class com.android.youtubetips.category.model.response.PageInfo { *; }
+-keep class com.android.youtubetips.category.model.response.Medium { *; }
+-keep class com.android.youtubetips.category.model.response.Maxres { *; }
+-keep class com.android.youtubetips.category.model.response.Localized { *; }
+-keep class com.android.youtubetips.category.model.response.High { *; }
+-keep class com.android.youtubetips.category.model.response.Default { *; }
+
