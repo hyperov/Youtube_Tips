@@ -17,10 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.youtubetips.R
 import com.google.ads.consent.*
 import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.*
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -79,6 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resumeAfterAdConsent() {
+        MobileAds.initialize(this) {}
         initializeAds()
         setupInterstitalAdsListeners()
         initUpdates()
