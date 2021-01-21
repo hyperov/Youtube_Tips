@@ -29,6 +29,8 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.tasks.Task
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.startapp.sdk.ads.splash.SplashConfig
+import com.startapp.sdk.adsbase.StartAppAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tool_bar.*
 import java.util.*
@@ -51,12 +53,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        MediationTestSuite.launch(this)
+        setSplashAd(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         initReviews()
         initUpdates()
         initializeAds()
         setupInterstitalAdsListeners()
+    }
+
+    private fun setSplashAd(savedInstanceState: Bundle?) {
+        StartAppAd.showSplash(
+            this, savedInstanceState,
+            SplashConfig()
+                .setTheme(SplashConfig.Theme.BLAZE)
+                .setAppName(getString(R.string.app_name))
+                .setMinSplashTime(SplashConfig.MinSplashTime.SHORT)
+                .setMaxAdDisplayTime(SplashConfig.MaxAdDisplayTime.SHORT)
+                .setLogo(R.drawable.niche)
+        )
     }
 
     private fun setupInterstitalAdsListeners() {
