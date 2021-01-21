@@ -38,6 +38,11 @@
             android:value="200865026" />
 
         <activity android:name=".home.MainActivity">
+
+        </activity>
+
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

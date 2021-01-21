@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_categories.*
 class CategoriesFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-//    private lateinit var adView: AdView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

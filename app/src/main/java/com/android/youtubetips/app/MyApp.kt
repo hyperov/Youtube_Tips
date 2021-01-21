@@ -26,5 +26,6 @@ class MyApp : Application() {
         Prefs = PreferenceManager.getDefaultSharedPreferences(this)
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0))
         registerNetworkConnectionEvents(this)
+
     }
 }

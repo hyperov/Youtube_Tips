@@ -34,6 +34,7 @@ import com.startapp.sdk.adsbase.StartAppAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tool_bar.*
 import java.util.*
+import javax.inject.Inject
 
 
 const val MY_REQUEST_CODE: Int = 111
@@ -50,16 +51,28 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mInterstitialAd: InterstitialAd
 
+    @Inject
+    lateinit var countryDetectorExtensions: CountryDetectorExtensions
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        MediationTestSuite.launch(this)
         setSplashAd(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        setConsentData()
         initReviews()
         initUpdates()
         initializeAds()
         setupInterstitalAdsListeners()
+    }
+
+    private fun setConsentData() {
+//        if (isEuUser(countryDetectorExtensions)) {
+//
+//        } else {
+//
+//        }
     }
 
     private fun setSplashAd(savedInstanceState: Bundle?) {
@@ -70,7 +83,6 @@ class MainActivity : AppCompatActivity() {
                 .setAppName(getString(R.string.app_name))
                 .setMinSplashTime(SplashConfig.MinSplashTime.SHORT)
                 .setMaxAdDisplayTime(SplashConfig.MaxAdDisplayTime.SHORT)
-                .setLogo(R.drawable.niche)
         )
     }
 

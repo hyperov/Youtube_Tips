@@ -8,6 +8,7 @@ import android.net.Network
 import android.net.NetworkRequest
 import androidx.fragment.app.Fragment
 import com.android.youtubetips.R
+import java.util.*
 
 lateinit var Prefs: SharedPreferences
 const val IS_CONNECTED = "IS_CONNECTED"
@@ -135,6 +136,18 @@ fun SharedPreferences.putAny(name: String, any: Any) {
 
     }
 }
+    fun isEuUser(countryDetectorExtensions: CountryDetectorExtensions): Boolean {
+        var country = countryDetectorExtensions.getCountryIsoCode()
+
+        country = country ?: Locale.getDefault().country
+        val euCountries = arrayListOf(
+            "BE", "EL", "LT", "PT", "BG", "ES", "LU", "RO", "CZ", "FR", "HU", "SI", "DK", "HR",
+            "MT", "SK", "DE", "IT", "NL", "FI", "EE", "CY", "AT", "SE", "IE", "LV", "PL", "UK",
+            "CH", "NO", "IS", "LI"
+        )
+        return euCountries.contains(country?.toUpperCase())
+    }
+
 
 
 
