@@ -43,6 +43,11 @@
     <!--    <string name="native_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/1049579361</string>-->
     <!--    تخصص   -->
 
+    <string name="admob_publisher_id" translatable="false">pub-8904130263057154</string>
+
+    //test
+<!--    <string name="admob_publisher_id" translatable="false">pub-0123456789012345</string>-->
+
     <string-array name="categoryList">
         <item>@string/ideas</item>
         <item>@string/niche</item>

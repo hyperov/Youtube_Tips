@@ -8,12 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.android.youtubetips.R
+import com.google.ads.consent.*
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
@@ -31,8 +34,11 @@ import com.google.android.play.core.tasks.Task
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.startapp.sdk.ads.splash.SplashConfig
 import com.startapp.sdk.adsbase.StartAppAd
+import com.startapp.sdk.adsbase.StartAppSDK
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tool_bar.*
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.*
 import javax.inject.Inject
 
@@ -46,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     var reviewInfo: ReviewInfo? = null
     lateinit var manager: ReviewManager
 
-    private lateinit var appUpdateInfoTask: Task<AppUpdateInfo>
+    private var appUpdateInfoTask: Task<AppUpdateInfo>? = null
     private lateinit var appUpdateManager: AppUpdateManager
 
     private lateinit var mInterstitialAd: InterstitialAd
@@ -54,25 +60,128 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var countryDetectorExtensions: CountryDetectorExtensions
 
+
+    private lateinit var googleConsentForm: ConsentForm
+
+    private val sharedAdsViewModel: SharedAdsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        MediationTestSuite.launch(this)
+//        RequestConfiguration.Builder()
+//            .setTestDeviceIds(Arrays.asList("24aba40d-0a1f-445b-a6cf-03d25d4cbc67"))
         setSplashAd(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        setConsentData()
         initReviews()
-        initUpdates()
+        setConsentData()
+
+    }
+
+    private fun resumeAfterAdConsent() {
         initializeAds()
         setupInterstitalAdsListeners()
+        initUpdates()
     }
 
     private fun setConsentData() {
-//        if (isEuUser(countryDetectorExtensions)) {
-//
+        val consentInformation = ConsentInformation.getInstance(this)
+        consentInformation.debugGeography = DebugGeography.DEBUG_GEOGRAPHY_EEA
+//        if (consentInformation.isRequestLocationInEeaOrUnknown) { // is user in Europe
+        checkForConsentData(consentInformation)
 //        } else {
-//
+//             updateStartAppAdsConsent(true)
+//                sharedAdsViewModel.isPersonalizedAds.value = true
+//                resumeAfterAdConsent()
 //        }
+    }
+
+    private fun updateStartAppAdsConsent(showPersonalizedAll: Boolean) {
+        StartAppSDK.setUserConsent(
+            this,
+            "pas",
+            System.currentTimeMillis(),
+            showPersonalizedAll
+        )
+    }
+
+    private fun checkForConsentData(consentInformation: ConsentInformation) {
+        val publisherIds = arrayOf(getString(R.string.admob_publisher_id))
+        consentInformation.requestConsentInfoUpdate(
+            publisherIds,
+            object : ConsentInfoUpdateListener {
+                override fun onConsentInfoUpdated(consentStatus: ConsentStatus?) {
+                    Log.e("ad consent success", "success")
+                    // User's consent status successfully updated.
+                    updateConsentAds(consentStatus!!)
+                }
+
+                override fun onFailedToUpdateConsentInfo(errorDescription: String) {
+                    // User's consent status failed to update.
+                    Log.e("ad consent fail", errorDescription)
+                }
+            })
+    }
+
+    private fun showGoogleConsentForm() {
+        var privacyUrl: URL? = null
+        try {
+
+            privacyUrl = URL("https://sites.google.com/view/ahmednabil/home")
+        } catch (e: MalformedURLException) {
+            e.printStackTrace()
+            // Handle error.
+        }
+        googleConsentForm = ConsentForm.Builder(this, privacyUrl)
+            .withListener(object : ConsentFormListener() {
+                override fun onConsentFormLoaded() {
+                    // Consent form loaded successfully.
+                    googleConsentForm.show()
+                }
+
+                override fun onConsentFormOpened() {
+                    // Consent form was displayed.
+                }
+
+                override fun onConsentFormClosed(
+                    consentStatus: ConsentStatus, userPrefersAdFree: Boolean
+                ) {
+                    // Consent form was closed.
+                    updateConsentAds(consentStatus)
+                }
+
+                override fun onConsentFormError(errorDescription: String) {
+                    // Consent form error.
+                }
+            })
+            .withPersonalizedAdsOption()
+            .withNonPersonalizedAdsOption()
+            .withAdFreeOption()
+            .build()
+
+        googleConsentForm.load()
+    }
+
+    private fun updateConsentAds(consentStatus: ConsentStatus) {
+        when (consentStatus) {
+            ConsentStatus.PERSONALIZED -> {
+                updateStartAppAdsConsent(true)
+                sharedAdsViewModel.isPersonalizedAds.value = true
+                resumeAfterAdConsent()
+            }
+            ConsentStatus.NON_PERSONALIZED -> {
+                updateStartAppAdsConsent(false)
+                sharedAdsViewModel.apply {
+                    isPersonalizedAds.value = false
+                    extrasPersonalAdsBundle.value?.putString("npa", "1")
+                    resumeAfterAdConsent()
+                }
+
+            }
+            ConsentStatus.UNKNOWN -> {
+                showGoogleConsentForm()
+            }
+        }
     }
 
     private fun setSplashAd(savedInstanceState: Bundle?) {
@@ -113,7 +222,16 @@ class MainActivity : AppCompatActivity() {
 
             override fun onAdClosed() {
                 // Code to be executed when the interstitial ad is closed.
-                mInterstitialAd.loadAd(AdRequest.Builder().build())
+                var builder = AdRequest.Builder()
+                if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
+                    builder = builder.addNetworkExtrasBundle(
+                        AdMobAdapter::class.java,
+                        sharedAdsViewModel.extrasPersonalAdsBundle.value
+                    )
+                }
+                mInterstitialAd.loadAd(
+                    builder.build()
+                )
             }
         }
     }
@@ -122,8 +240,23 @@ class MainActivity : AppCompatActivity() {
         //interstital ads
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = getString(R.string.interstital_ad_unit_id)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-        showAds()
+
+        var builder = AdRequest.Builder()
+        if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
+            builder = builder.addNetworkExtrasBundle(
+                AdMobAdapter::class.java,
+                sharedAdsViewModel.extrasPersonalAdsBundle.value
+            )
+        }
+
+        mInterstitialAd.loadAd(
+            builder
+                .addNetworkExtrasBundle(
+                    AdMobAdapter::class.java,
+                    sharedAdsViewModel.extrasPersonalAdsBundle.value
+                ).build()
+        )
+//        showAds()
     }
 
     private fun showAds() {
@@ -224,7 +357,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkForUpdates() {
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+        appUpdateInfoTask?.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 // For a flexible update, use AppUpdateType.FLEXIBLE
                 && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
@@ -248,7 +381,7 @@ class MainActivity : AppCompatActivity() {
     private fun resumeUpdate() {
 
         appUpdateInfoTask
-            .addOnSuccessListener { appUpdateInfo ->
+            ?.addOnSuccessListener { appUpdateInfo ->
 
                 if (appUpdateInfo.updateAvailability()
                     == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS

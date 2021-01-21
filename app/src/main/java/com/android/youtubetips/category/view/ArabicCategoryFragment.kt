@@ -13,6 +13,7 @@ import com.android.youtubetips.R
 import com.android.youtubetips.category.viewmodel.CategoryViewModel
 import com.android.youtubetips.home.*
 import com.android.youtubetips.youtube.YoutubePlayerViewModel
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -25,8 +26,10 @@ import kotlinx.android.synthetic.main.fragment_category.*
 class ArabicCategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,7 +107,14 @@ class ArabicCategoryFragment : Fragment() {
     }
 
     private fun setupBannerAds() {
-        val adRequest = AdRequest.Builder().build()
+        var builder = AdRequest.Builder()
+        if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
+            builder = builder.addNetworkExtrasBundle(
+                AdMobAdapter::class.java,
+                sharedAdsViewModel.extrasPersonalAdsBundle.value
+            )
+        }
+        val adRequest = builder.build()
         adView.loadAd(adRequest)
     }
 }

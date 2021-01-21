@@ -135,6 +135,10 @@ dependencies {
     implementation 'com.startapp:inapp-sdk:4.6.3'
     implementation 'com.startapp:admob-mediation:2.0.0'
 
+    //consent for date in Europe
+    implementation 'com.google.android.ads.consent:consent-library:1.0.8'
+
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

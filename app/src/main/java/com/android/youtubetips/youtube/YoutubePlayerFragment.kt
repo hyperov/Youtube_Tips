@@ -10,10 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.android.youtubetips.R
-import com.android.youtubetips.home.COUNTER_FOR_INTERSTITAL_AD
-import com.android.youtubetips.home.COUNTER_FOR_REVIEW
-import com.android.youtubetips.home.Prefs
-import com.android.youtubetips.home.putAny
+import com.android.youtubetips.home.*
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
@@ -31,10 +29,11 @@ import kotlinx.android.synthetic.main.fragment_youtube_player.*
 class YoutubePlayerFragment : Fragment() {
 
     private var mYouTubePlayer: YouTubePlayer? = null
-    private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
     private lateinit var navOptions: NavOptions
-
     private lateinit var mInterstitialAd: InterstitialAd
+
+    private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
+    private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,12 +45,12 @@ class YoutubePlayerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupTitle()
         Prefs.putAny(COUNTER_FOR_INTERSTITAL_AD, 0)
         FirebaseCrashlytics.getInstance().setCustomKey("SCREEN", "YoutubePlayerFragment")
         FirebaseAnalytics.getInstance(requireContext()).logEvent("SCREEN", Bundle())
         lifecycle.addObserver(youTubePlayerView)
         addListeners()
-        setupTitle()
         initializeAds()
         setupInterstitalAdsListeners()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
@@ -141,7 +140,15 @@ class YoutubePlayerFragment : Fragment() {
         //interstital ads
         mInterstitialAd = InterstitialAd(requireActivity())
         mInterstitialAd.adUnitId = getString(R.string.interstital_ad_unit_id)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        var builder = AdRequest.Builder()
+        if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
+            builder = builder.addNetworkExtrasBundle(
+                AdMobAdapter::class.java,
+                sharedAdsViewModel.extrasPersonalAdsBundle.value
+            )
+        }
+        mInterstitialAd.loadAd(builder.build())
     }
 
     private fun showAds() {

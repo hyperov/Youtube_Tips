@@ -9,10 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.android.youtubetips.R
 import com.android.youtubetips.categories.model.CategoryItem
-import com.android.youtubetips.home.COUNTER_FOR_REVIEW
-import com.android.youtubetips.home.Prefs
-import com.android.youtubetips.home.SharedViewModel
-import com.android.youtubetips.home.putAny
+import com.android.youtubetips.home.*
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -24,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_categories.*
 class CategoriesFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +35,9 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
-        setupBannerAds()
+        setupBannerAds(sharedAdsViewModel.isPersonalizedAds.value!!.not())
         setupAdsListeners()
+        observeAdsConsent()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
     }
 
@@ -105,9 +105,22 @@ class CategoriesFragment : Fragment() {
         }
     }
 
-    private fun setupBannerAds() {
-        val adRequest = AdRequest.Builder().build()
+    private fun setupBannerAds(isNotPersonalized: Boolean) {
+        var builder = AdRequest.Builder()
+        if (isNotPersonalized) {
+            builder = builder.addNetworkExtrasBundle(
+                AdMobAdapter::class.java,
+                sharedAdsViewModel.extrasPersonalAdsBundle.value
+            )
+        }
+        val adRequest = builder.build()
         adView.loadAd(adRequest)
+    }
+
+    private fun observeAdsConsent() {
+        sharedAdsViewModel.isPersonalizedAds.observe(
+            viewLifecycleOwner,
+            { setupBannerAds(it.not()) })
     }
 
 }
