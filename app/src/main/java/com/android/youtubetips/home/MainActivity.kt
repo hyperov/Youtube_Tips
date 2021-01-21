@@ -17,7 +17,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.youtubetips.R
 import com.google.ads.consent.*
 import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.*
+import com.google.android.ads.mediationtestsuite.MediationTestSuite
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -32,6 +36,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.startapp.sdk.ads.splash.SplashConfig
 import com.startapp.sdk.adsbase.StartAppAd
 import com.startapp.sdk.adsbase.StartAppSDK
+import com.unity3d.ads.metadata.MetaData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tool_bar.*
 import java.net.MalformedURLException
@@ -64,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        MediationTestSuite.launch(this)
+        MediationTestSuite.launch(this)
 //        RequestConfiguration.Builder()
 //            .setTestDeviceIds(Arrays.asList("24aba40d-0a1f-445b-a6cf-03d25d4cbc67"))
         setSplashAd(savedInstanceState)
@@ -76,7 +81,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resumeAfterAdConsent() {
-        MobileAds.initialize(this) {}
         initializeAds()
         setupInterstitalAdsListeners()
         initUpdates()
@@ -162,6 +166,11 @@ class MainActivity : AppCompatActivity() {
             ConsentStatus.PERSONALIZED -> {
                 updateStartAppAdsConsent(true)
                 sharedAdsViewModel.isPersonalizedAds.value = true
+                //unity gdpr
+                val gdprMetaData = MetaData(this)
+                gdprMetaData.set("gdpr.consent", true)
+                gdprMetaData.commit()
+
                 resumeAfterAdConsent()
             }
             ConsentStatus.NON_PERSONALIZED -> {
@@ -169,6 +178,10 @@ class MainActivity : AppCompatActivity() {
                 sharedAdsViewModel.apply {
                     isPersonalizedAds.value = false
                     extrasPersonalAdsBundle.value?.putString("npa", "1")
+                    //unity no gdpr
+                    val gdprMetaData = MetaData(this@MainActivity)
+                    gdprMetaData["gdpr.consent"] = false
+                    gdprMetaData.commit()
                     resumeAfterAdConsent()
                 }
 

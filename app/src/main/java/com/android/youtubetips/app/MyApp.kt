@@ -18,7 +18,7 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        MobileAds.initialize(this) {}
         StartAppSDK.setTestAdsEnabled(true)
         if (!BuildConfig.DEBUG) {
             Firebase.crashlytics.setCrashlyticsCollectionEnabled(true)
