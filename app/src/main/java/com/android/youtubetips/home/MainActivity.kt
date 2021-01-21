@@ -86,14 +86,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setConsentData() {
         val consentInformation = ConsentInformation.getInstance(this)
-        consentInformation.debugGeography = DebugGeography.DEBUG_GEOGRAPHY_EEA
-//        if (consentInformation.isRequestLocationInEeaOrUnknown) { // is user in Europe
+//        consentInformation.debugGeography = DebugGeography.DEBUG_GEOGRAPHY_EEA
         checkForConsentData(consentInformation)
-//        } else {
-//             updateStartAppAdsConsent(true)
-//                sharedAdsViewModel.isPersonalizedAds.value = true
-//                resumeAfterAdConsent()
-//        }
     }
 
     private fun updateStartAppAdsConsent(showPersonalizedAll: Boolean) {
@@ -113,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onConsentInfoUpdated(consentStatus: ConsentStatus?) {
                     Log.e("ad consent success", "success")
                     // User's consent status successfully updated.
-                    updateConsentAds(consentStatus!!)
+                    updateConsentAds(consentInformation, consentStatus!!)
                 }
 
                 override fun onFailedToUpdateConsentInfo(errorDescription: String) {
@@ -123,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun showGoogleConsentForm() {
+    private fun showGoogleConsentForm(consentInformation: ConsentInformation) {
         var privacyUrl: URL? = null
         try {
 
@@ -147,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     consentStatus: ConsentStatus, userPrefersAdFree: Boolean
                 ) {
                     // Consent form was closed.
-                    updateConsentAds(consentStatus)
+                    updateConsentAds(consentInformation, consentStatus)
                 }
 
                 override fun onConsentFormError(errorDescription: String) {
@@ -162,7 +156,10 @@ class MainActivity : AppCompatActivity() {
         googleConsentForm.load()
     }
 
-    private fun updateConsentAds(consentStatus: ConsentStatus) {
+    private fun updateConsentAds(
+        consentInformation: ConsentInformation,
+        consentStatus: ConsentStatus
+    ) {
         when (consentStatus) {
             ConsentStatus.PERSONALIZED -> {
                 updateStartAppAdsConsent(true)
@@ -179,7 +176,15 @@ class MainActivity : AppCompatActivity() {
 
             }
             ConsentStatus.UNKNOWN -> {
-                showGoogleConsentForm()
+                if (consentInformation.isRequestLocationInEeaOrUnknown) {
+                    // is user in Europe
+                    showGoogleConsentForm(consentInformation)
+                } else {
+                    updateStartAppAdsConsent(true)
+                    sharedAdsViewModel.isPersonalizedAds.value = true
+                    resumeAfterAdConsent()
+                }
+
             }
         }
     }
