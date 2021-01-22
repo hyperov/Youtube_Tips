@@ -20,16 +20,15 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.free.fragment_category.*
 
 @AndroidEntryPoint
-class ArabicCategoryFragment : Fragment() {
+class EnglishCategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +50,7 @@ class ArabicCategoryFragment : Fragment() {
 
     private fun setupTitle() {
         requireActivity().findViewById<MaterialToolbar>(R.id.toolbar).title =
-            getString(R.string.arabic)
+            getString(R.string.english_channels)
     }
 
     private fun setup() {
@@ -65,7 +64,7 @@ class ArabicCategoryFragment : Fragment() {
 
     private fun observeData() {
         categoryViewModel.videos.observe(viewLifecycleOwner, Observer { videos ->
-            val adapter = CategoryRecyclerViewAdapter(videos, true) { videoItem ->
+            val adapter = CategoryRecyclerViewAdapter(videos, false) { videoItem ->
                 youtubePlayerViewModel.videoId.value = videoItem.id
                 youtubePlayerViewModel.videoTitle.value = videoItem.snippet.title
                 findNavController().navigate(R.id.youtubePlayerFragment)
@@ -117,4 +116,5 @@ class ArabicCategoryFragment : Fragment() {
         val adRequest = builder.build()
         adView.loadAd(adRequest)
     }
+
 }

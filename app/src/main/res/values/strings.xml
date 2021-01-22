@@ -31,22 +31,7 @@
     <string name="language">language</string>
     <string name="contact_us">Contact Us</string>
 
-    //testing
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstital_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="native_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
-
-
-    <!--   //production-->
-    <!--    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/2977437389</string>-->
-    <!--    <string name="interstital_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/8968130666</string>-->
-    <!--    <string name="native_ad_unit_id" translatable="false">ca-app-pub-8904130263057154/1049579361</string>-->
-    <!--    تخصص   -->
-
     <string name="admob_publisher_id" translatable="false">pub-8904130263057154</string>
-
-    //test
-<!--    <string name="admob_publisher_id" translatable="false">pub-0123456789012345</string>-->
 
     <string-array name="categoryList">
         <item>@string/ideas</item>

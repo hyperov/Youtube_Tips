@@ -15,7 +15,14 @@ const val IS_CONNECTED = "IS_CONNECTED"
 const val COUNTER_FOR_REVIEW = "COUNTER_FOR_REVIEW"
 const val COUNTER_FOR_INTERSTITAL_AD = "COUNTER_FOR_INTERSTITAL_AD"
 const val MAX_COUNT_REVIEW_DIALOG_SHOW = 10
+const val MY_REQUEST_CODE: Int = 111
 
+//adapter item types
+const val ITEM_TYPE = 0
+const val AD_TYPE = 1
+
+const val ARABIC_ITEM = 10
+const val ENGLISH_ITEM = 20
 
 fun Fragment.getCategoryVideoIds(position: Int, isArabic: Boolean): Array<String> =
     when (position) {
@@ -136,18 +143,6 @@ fun SharedPreferences.putAny(name: String, any: Any) {
 
     }
 }
-    fun isEuUser(countryDetectorExtensions: CountryDetectorExtensions): Boolean {
-        var country = countryDetectorExtensions.getCountryIsoCode()
-
-        country = country ?: Locale.getDefault().country
-        val euCountries = arrayListOf(
-            "BE", "EL", "LT", "PT", "BG", "ES", "LU", "RO", "CZ", "FR", "HU", "SI", "DK", "HR",
-            "MT", "SK", "DE", "IT", "NL", "FI", "EE", "CY", "AT", "SE", "IE", "LV", "PL", "UK",
-            "CH", "NO", "IS", "LI"
-        )
-        return euCountries.contains(country?.toUpperCase())
-    }
-
 
 
 

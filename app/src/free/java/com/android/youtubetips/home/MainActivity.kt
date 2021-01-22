@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.android.youtubetips.BuildConfig
 import com.android.youtubetips.R
 import com.google.ads.consent.*
 import com.google.ads.mediation.admob.AdMobAdapter
@@ -42,10 +43,6 @@ import kotlinx.android.synthetic.main.tool_bar.*
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
-import javax.inject.Inject
-
-
-const val MY_REQUEST_CODE: Int = 111
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -59,19 +56,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mInterstitialAd: InterstitialAd
 
-    @Inject
-    lateinit var countryDetectorExtensions: CountryDetectorExtensions
-
-
     private lateinit var googleConsentForm: ConsentForm
 
     private val sharedAdsViewModel: SharedAdsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MediationTestSuite.launch(this)
-//        RequestConfiguration.Builder()
-//            .setTestDeviceIds(Arrays.asList("24aba40d-0a1f-445b-a6cf-03d25d4cbc67"))
+        if (BuildConfig.IS_TESTING)
+            MediationTestSuite.launch(this)
         setSplashAd(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)

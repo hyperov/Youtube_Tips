@@ -13,20 +13,14 @@ import com.android.youtubetips.R
 import com.android.youtubetips.category.viewmodel.CategoryViewModel
 import com.android.youtubetips.home.*
 import com.android.youtubetips.youtube.YoutubePlayerViewModel
-import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.paid.fragment_category.*
 
 @AndroidEntryPoint
 class EnglishCategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
 
@@ -41,10 +35,8 @@ class EnglishCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        setup()
         setupTitle()
-        setupBannerAds()
-        setupAdsListeners()
+        setup()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
     }
 
@@ -64,57 +56,13 @@ class EnglishCategoryFragment : Fragment() {
 
     private fun observeData() {
         categoryViewModel.videos.observe(viewLifecycleOwner, Observer { videos ->
-            val adapter = CategoryRecyclerViewAdapter(videos, false) { videoItem ->
+            val adapter = CategoryRecyclerViewAdapter(videos,false) { videoItem ->
                 youtubePlayerViewModel.videoId.value = videoItem.id
                 youtubePlayerViewModel.videoTitle.value = videoItem.snippet.title
                 findNavController().navigate(R.id.youtubePlayerFragment)
             }
             rvCategory.adapter = adapter
         })
-    }
-
-    private fun setupAdsListeners() {
-        adView.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", true)
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                // Code to be executed when an ad request fails.
-                FirebaseCrashlytics.getInstance().setCustomKey("BANNER_AD_LOADED", false)
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-        }
-    }
-
-    private fun setupBannerAds() {
-        var builder = AdRequest.Builder()
-        if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
-            builder = builder.addNetworkExtrasBundle(
-                AdMobAdapter::class.java,
-                sharedAdsViewModel.extrasPersonalAdsBundle.value
-            )
-        }
-        val adRequest = builder.build()
-        adView.loadAd(adRequest)
     }
 
 }

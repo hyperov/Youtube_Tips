@@ -1,4 +1,4 @@
-package com.android.youtubetips.categories.view
+package com.android.youtubetips.category.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,71 +6,72 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.android.youtubetips.R
-import com.android.youtubetips.categories.model.CategoryItem
+import com.android.youtubetips.category.viewmodel.CategoryViewModel
 import com.android.youtubetips.home.*
+import com.android.youtubetips.youtube.YoutubePlayerViewModel
 import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.android.synthetic.free.fragment_category.*
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment() {
+class ArabicCategoryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val sharedAdsViewModel: SharedAdsViewModel by activityViewModels()
+    private val categoryViewModel: CategoryViewModel by viewModels()
+    private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_categories, container, false)
+        return inflater.inflate(R.layout.fragment_category, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeData()
         setup()
-        setupBannerAds(sharedAdsViewModel.isPersonalizedAds.value!!.not())
+        setupTitle()
+        setupBannerAds()
         setupAdsListeners()
-        observeAdsConsent()
         Prefs.putAny(COUNTER_FOR_REVIEW, Prefs.getInt(COUNTER_FOR_REVIEW, 0) + 1)
     }
 
-    private fun setup() {
-        val adapter =
-            CategoryListRecyclerViewAdapter(loadResources()) { category: CategoryItem ->
-                sharedViewModel.selectedCategory.value = category
-                findNavController().navigate(R.id.mainCategoryFragment)
-            }
-        rvCategoryList.adapter = adapter
+    private fun setupTitle() {
+        requireActivity().findViewById<MaterialToolbar>(R.id.toolbar).title =
+            getString(R.string.arabic)
     }
 
-    private fun loadResources(): List<CategoryItem> {
-
-        val categories = arrayListOf<CategoryItem>()
-
-        val categoryNames = resources.getStringArray(R.array.categoryList).toList()
-
-        val tArray = resources.obtainTypedArray(
-            R.array.categoryListImages
+    private fun setup() {
+        val categoryVideoIds = getCategoryVideoIds(
+            sharedViewModel.selectedCategory.value!!.categoryId,
+            sharedViewModel.selectedTabPosition.value == 1
         )
+        categoryViewModel.getCategory(categoryVideoIds)
 
-        val count = tArray.length()
-        val categoryImageIds = IntArray(count)
+    }
 
-        for (i in categoryImageIds.indices) {
-            categoryImageIds[i] = tArray.getResourceId(i, 0)
-            categories.add(CategoryItem(categoryNames[i], categoryImageIds[i], i))
-        }
-        //Recycles the TypedArray, to be re-used by a later caller.
-        //After calling this function you must not ever touch the typed array again.
-        tArray.recycle()
-        return categories
+    private fun observeData() {
+        categoryViewModel.videos.observe(viewLifecycleOwner, Observer { videos ->
+            val adapter = CategoryRecyclerViewAdapter(videos, true) { videoItem ->
+                youtubePlayerViewModel.videoId.value = videoItem.id
+                youtubePlayerViewModel.videoTitle.value = videoItem.snippet.title
+                findNavController().navigate(R.id.youtubePlayerFragment)
+            }
+            rvCategory.adapter = adapter
+        })
     }
 
     private fun setupAdsListeners() {
@@ -105,9 +106,9 @@ class CategoriesFragment : Fragment() {
         }
     }
 
-    private fun setupBannerAds(isNotPersonalized: Boolean) {
+    private fun setupBannerAds() {
         var builder = AdRequest.Builder()
-        if (isNotPersonalized) {
+        if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
             builder = builder.addNetworkExtrasBundle(
                 AdMobAdapter::class.java,
                 sharedAdsViewModel.extrasPersonalAdsBundle.value
@@ -116,11 +117,4 @@ class CategoriesFragment : Fragment() {
         val adRequest = builder.build()
         adView.loadAd(adRequest)
     }
-
-    private fun observeAdsConsent() {
-        sharedAdsViewModel.isPersonalizedAds.observe(
-            viewLifecycleOwner,
-            { setupBannerAds(it.not()) })
-    }
-
 }

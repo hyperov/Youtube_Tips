@@ -22,14 +22,13 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_youtube_player.*
+import kotlinx.android.synthetic.free.fragment_youtube_player.*
 
 
 @AndroidEntryPoint
 class YoutubePlayerFragment : Fragment() {
 
     private var mYouTubePlayer: YouTubePlayer? = null
-    private lateinit var navOptions: NavOptions
     private lateinit var mInterstitialAd: InterstitialAd
 
     private val youtubePlayerViewModel: YoutubePlayerViewModel by activityViewModels()

@@ -1,11 +1,13 @@
-package com.android.youtubetips.category.view
+package com.android.youtubetips.categories.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.youtubetips.R
-import com.android.youtubetips.category.model.response.VideoItem
+import com.android.youtubetips.categories.model.CategoryItem
+import com.android.youtubetips.home.AD_TYPE
+import com.android.youtubetips.home.ITEM_TYPE
 import com.google.android.ads.nativetemplates.NativeTemplateStyle
 import com.google.android.ads.nativetemplates.TemplateView
 import com.google.android.gms.ads.AdListener
@@ -15,31 +17,24 @@ import com.google.android.gms.ads.formats.NativeAdOptions
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_category.view.*
 
-const val ARABIC_ITEM = 0
-const val ENGLISH_ITEM = 1
-const val AD_TYPE = 2
 
-class CategoryRecyclerViewAdapter(
-    private val values: List<VideoItem>,
-    private val isArabic: Boolean,
-    private val onVideoClick: (VideoItem) -> Unit
+class CategoryListRecyclerViewAdapter(
+    private val values: List<CategoryItem>,
+    private val onCategoryItemClick: ((category: CategoryItem) -> Unit)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val from = LayoutInflater.from(parent.context)
-        val view = when (viewType) {
-            ARABIC_ITEM -> from.inflate(R.layout.item_video_arabic, parent, false)
-            ENGLISH_ITEM -> from.inflate(R.layout.item_video_english, parent, false)
-            AD_TYPE -> from.inflate(R.layout.item_native_ad, parent, false)
-            else -> from.inflate(R.layout.item_category, parent, false)
-        }
-        return if (viewType == AD_TYPE) AdViewHolder(view) else ViewHolder(view)
+
+        val res = if (viewType == ITEM_TYPE) R.layout.item_category else R.layout.item_native_ad
+        val view = LayoutInflater.from(parent.context).inflate(res, parent, false)
+
+        return if (viewType == ITEM_TYPE) ViewHolder(view) else AdViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemViewType = getItemViewType(position)
 
-        if (itemViewType == ARABIC_ITEM || itemViewType == ENGLISH_ITEM) {
+        if (itemViewType == ITEM_TYPE) {
             val item = values[position]
             (holder as ViewHolder).bind(item, position)
         } else {
@@ -71,36 +66,24 @@ class CategoryRecyclerViewAdapter(
                 .build()
             adLoader.loadAd(AdRequest.Builder().build())
         }
+
     }
 
     override fun getItemCount(): Int = values.size
 
-    override fun getItemViewType(position: Int) =
-        if (position % 5 == 0) AD_TYPE else if (isArabic) ARABIC_ITEM else ENGLISH_ITEM
+    override fun getItemViewType(position: Int): Int {
+        return if (position % 5 == 0)
+            AD_TYPE
+        else
+            ITEM_TYPE
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(video: VideoItem, position: Int) = with(itemView) {
-            tvCategoryTitle.text = video.snippet.title
-            with(video.snippet.thumbnails) {
-                standard?.let {
-                    Picasso.get().load(standard.url).into(ivCategory)
-                    return@with
-                }
-                high?.let {
-                    Picasso.get().load(high.url).into(ivCategory)
-                    return@with
-                }
-                medium?.let {
-                    Picasso.get().load(medium.url).into(ivCategory)
-                    return@with
-                }
-                default?.let {
-                    Picasso.get().load(default.url).into(ivCategory)
-                    return@with
-                }
-            }
-            setOnClickListener { onVideoClick.invoke(video) }
+        fun bind(category: CategoryItem, position: Int) = with(itemView) {
+            tvCategoryTitle.text = category.name
+            Picasso.get().load(category.imageRes).into(ivCategory)
+            setOnClickListener { onCategoryItemClick.invoke(category) }
         }
 
     }

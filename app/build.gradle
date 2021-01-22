@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.firebase.crashlytics'
-    id 'com.google.gms.google-services'
 }
 
 
@@ -42,13 +41,52 @@ android {
         debug {
             manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
             ext.enableCrashlytics = false
+            versionNameSuffix ".debug"
+
+            resValue "string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "interstital_ad_unit_id", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "native_ad_unit_id", "ca-app-pub-3940256099942544/2247696110"
         }
         release {
             minifyEnabled true
             shrinkResources true
+            ext.enableCrashlytics = true
             signingConfig signingConfigs.release
             manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue "string", "banner_ad_unit_id", "ca-app-pub-8904130263057154/2977437389"
+            resValue "string", "interstital_ad_unit_id", "ca-app-pub-8904130263057154/8968130666"
+            resValue "string", "native_ad_unit_id", "ca-app-pub-8904130263057154/1049579361"
+        }
+    }
+
+    flavorDimensions "price","env"
+    productFlavors {
+        free {
+            dimension "price"
+            apply plugin: 'com.google.gms.google-services'
+
+            applicationIdSuffix ".free"
+            versionNameSuffix '-free'
+            buildConfigField 'boolean', 'IS_PAID', 'false'
+        }
+        paid {
+            dimension "price"
+            applicationIdSuffix ".paid"
+            versionNameSuffix '-paid'
+            buildConfigField 'boolean', 'IS_PAID', 'true'
+        }
+        dev{
+            dimension "env"
+
+            versionNameSuffix "-dev"
+            buildConfigField 'boolean', 'IS_TESTING', 'true'
+        }
+        production{
+            dimension "env"
+            buildConfigField 'boolean', 'IS_TESTING', 'false'
+
         }
     }
 
@@ -91,10 +129,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    implementation 'com.google.firebase:firebase-ads:19.6.0'
-    implementation 'com.google.android.gms:play-services-ads:19.6.0'
-    implementation 'com.google.android.ads:mediation-test-suite:1.5.0'
-    
+    freeImplementation 'com.google.firebase:firebase-ads:19.6.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:19.6.0'
+    freeImplementation 'com.google.android.ads:mediation-test-suite:1.5.0'
+
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
     //view model , life cycle
@@ -123,20 +161,20 @@ dependencies {
     //review and update
     implementation 'com.google.android.play:core-ktx:1.8.1'
 
-    implementation project(':nativetemplates')
+    freeImplementation project(':nativetemplates')
 
     //ad sources
-    implementation 'com.adcolony:sdk:4.4.0'
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.ads.mediation:adcolony:4.3.0.0'
-    implementation 'com.google.ads.mediation:unity:3.6.0.0'
-    implementation 'com.noqoush.adfalcon.android.sdk:adfalcon-sdk:5.2.0'
-    implementation 'com.google.ads.mediation.adfalcon:admob-mediation-adapter:2.1.0'
-    implementation 'com.startapp:inapp-sdk:4.6.3'
-    implementation 'com.startapp:admob-mediation:2.0.0'
+    freeImplementation 'com.adcolony:sdk:4.4.0'
+    freeImplementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    freeImplementation 'com.google.ads.mediation:adcolony:4.3.0.0'
+    freeImplementation 'com.google.ads.mediation:unity:3.6.0.0'
+    freeImplementation 'com.noqoush.adfalcon.android.sdk:adfalcon-sdk:5.2.0'
+    freeImplementation 'com.google.ads.mediation.adfalcon:admob-mediation-adapter:2.1.0'
+    freeImplementation 'com.startapp:inapp-sdk:4.6.3'
+    freeImplementation 'com.startapp:admob-mediation:2.0.0'
 
     //consent for date in Europe
-    implementation 'com.google.android.ads.consent:consent-library:1.0.8'
+    freeImplementation 'com.google.android.ads.consent:consent-library:1.0.8'
 
 
     testImplementation 'junit:junit:4.+'
