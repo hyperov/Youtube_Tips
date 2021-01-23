@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Youtube Tips</string>
+    <string name="app_name">نصائح اليوتيوب</string>
 
     <string name="english">قنوات إنجليزية</string>
     <string name="arabic">قنوات عربية</string>
@@ -22,7 +22,6 @@
     <string name="grow">طرق تكبير قناتك على اليوتيوب</string>
     <string name="create_channel">كيف تقوم بإنشاء قناتك على اليوتيوب من الصفر</string>
 
-    <string name="youtube_tips">نصائح اليوتيوب</string>
     <string name="youtube_channels">اختر اللغة</string>
     <string name="english_channels">القنوات الأجنبية</string>
     <string name="arabic_channels">القنوات العربية</string>
