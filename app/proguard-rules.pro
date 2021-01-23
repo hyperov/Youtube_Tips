@@ -90,16 +90,16 @@ LineNumberTable, *Annotation*, EnclosingMethod
 
 
 
--keep class com.android.youtubetips.categories.model.CategoryItem { *; }
--keep class com.android.youtubetips.category.model.response.YoutubeCategoryResponse { *; }
--keep class com.android.youtubetips.category.model.response.VideoItem { *; }
--keep class com.android.youtubetips.category.model.response.Thumbnails { *; }
--keep class com.android.youtubetips.category.model.response.Standard { *; }
--keep class com.android.youtubetips.category.model.response.Snippet { *; }
--keep class com.android.youtubetips.category.model.response.PageInfo { *; }
--keep class com.android.youtubetips.category.model.response.Medium { *; }
--keep class com.android.youtubetips.category.model.response.Maxres { *; }
--keep class com.android.youtubetips.category.model.response.Localized { *; }
--keep class com.android.youtubetips.category.model.response.High { *; }
--keep class com.android.youtubetips.category.model.response.Default { *; }
+-keep class com.nabil.youtubetips.categories.model.CategoryItem { *; }
+-keep class com.nabil.youtubetips.category.model.response.YoutubeCategoryResponse { *; }
+-keep class com.nabil.youtubetips.category.model.response.VideoItem { *; }
+-keep class com.nabil.youtubetips.category.model.response.Thumbnails { *; }
+-keep class com.nabil.youtubetips.category.model.response.Standard { *; }
+-keep class com.nabil.youtubetips.category.model.response.Snippet { *; }
+-keep class com.nabil.youtubetips.category.model.response.PageInfo { *; }
+-keep class com.nabil.youtubetips.category.model.response.Medium { *; }
+-keep class com.nabil.youtubetips.category.model.response.Maxres { *; }
+-keep class com.nabil.youtubetips.category.model.response.Localized { *; }
+-keep class com.nabil.youtubetips.category.model.response.High { *; }
+-keep class com.nabil.youtubetips.category.model.response.Default { *; }
 

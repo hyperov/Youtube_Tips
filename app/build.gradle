@@ -27,7 +27,7 @@ android {
 
     }
     defaultConfig {
-        applicationId "com.android.youtubetips"
+        applicationId "com.nabil.youtubetips"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

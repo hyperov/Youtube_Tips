@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context="com.android.youtubetips.categories.view.CategoriesFragment"
+        tools:context="com.nabil.youtubetips.com.nabil.youtubetips.categories.view.CategoriesFragment"
         tools:listitem="@layout/item_category" />
 
     <com.google.android.gms.ads.AdView

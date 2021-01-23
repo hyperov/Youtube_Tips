@@ -6,7 +6,7 @@
     app:startDestination="@id/englishCategoryFragment">
     <fragment
         android:id="@+id/arabicCategoryFragment"
-        android:name="com.android.youtubetips.category.view.ArabicCategoryFragment"
+        android:name="com.nabil.youtubetips.category.view.ArabicCategoryFragment"
         android:label="fragment_category_arabic"
         tools:layout="@layout/fragment_category">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/englishCategoryFragment"
-        android:name="com.android.youtubetips.category.view.EnglishCategoryFragment"
+        android:name="com.nabil.youtubetips.category.view.EnglishCategoryFragment"
         android:label="EnglishCategoryFragment"
         tools:layout="@layout/fragment_category">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/youtubePlayerFragment"
-        android:name="com.android.youtubetips.youtube.YoutubePlayerFragment"
+        android:name="com.nabil.youtubetips.youtube.YoutubePlayerFragment"
         android:label="YoutubePlayerFragment"
         tools:layout="@layout/fragment_youtube_player" />
 </navigation>

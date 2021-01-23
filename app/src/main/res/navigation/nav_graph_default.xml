@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.android.youtubetips.categories.view.CategoriesFragment"
+        android:name="com.nabil.youtubetips.categories.view.CategoriesFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_categories">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainCategoryFragment"
-        android:name="com.android.youtubetips.category.view.MainCategoryFragment"
+        android:name="com.nabil.youtubetips.category.view.MainCategoryFragment"
         android:label="@string/youtube_channels"
         tools:layout="@layout/fragment_category_main" />
 
