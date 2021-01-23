@@ -86,10 +86,6 @@ class YoutubePlayerFragment : Fragment() {
                         if (Prefs.getInt(COUNTER_FOR_INTERSTITAL_AD, 0) < 1)
                             showAds()
                     }
-                    second in 5f..7f -> {
-                        if (Prefs.getInt(COUNTER_FOR_INTERSTITAL_AD, 0) < 1)
-                            showAds()
-                    }
                 }
             }
         })
