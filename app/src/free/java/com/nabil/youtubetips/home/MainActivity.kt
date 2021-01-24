@@ -47,6 +47,8 @@ import java.util.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private var destFragmentId = -1
+
     private lateinit var navController: NavController
     var reviewInfo: ReviewInfo? = null
     lateinit var manager: ReviewManager
@@ -264,7 +266,6 @@ class MainActivity : AppCompatActivity() {
                     sharedAdsViewModel.extrasPersonalAdsBundle.value
                 ).build()
         )
-//        showAds()
     }
 
     private fun showAds() {
@@ -281,6 +282,9 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            destFragmentId = destination.id
+        }
     }
 
     override fun onResume() {
@@ -402,7 +406,7 @@ class MainActivity : AppCompatActivity() {
                         AppUpdateType.IMMEDIATE,
                         this,
                         MY_REQUEST_CODE
-                    );
+                    )
                 }
             }
     }
@@ -441,6 +445,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        if (destFragmentId != -1 && destFragmentId == R.id.categoriesFragment)
+            StartAppAd(this).onBackPressed()
+        super.onBackPressed()
     }
 
 

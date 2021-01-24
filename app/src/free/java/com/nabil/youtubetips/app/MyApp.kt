@@ -3,9 +3,9 @@ package com.nabil.youtubetips.app
 import android.app.Application
 import androidx.preference.PreferenceManager
 import com.google.android.gms.ads.MobileAds
-import com.google.firebase.crashlytics.ktx.BuildConfig
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
+import com.nabil.youtubetips.BuildConfig
 import com.nabil.youtubetips.home.COUNTER_FOR_REVIEW
 import com.nabil.youtubetips.home.Prefs
 import com.nabil.youtubetips.home.putAny
