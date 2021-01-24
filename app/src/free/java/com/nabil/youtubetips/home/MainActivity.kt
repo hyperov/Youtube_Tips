@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     private var appUpdateInfoTask: Task<AppUpdateInfo>? = null
     private lateinit var appUpdateManager: AppUpdateManager
 
-    private lateinit var mInterstitialAd: InterstitialAd
+    private var mInterstitialAd: InterstitialAd? = null
 
     private lateinit var googleConsentForm: ConsentForm
 
@@ -206,7 +206,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupInterstitalAdsListeners() {
-        mInterstitialAd.adListener = object : AdListener() {
+        mInterstitialAd?.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
                 FirebaseCrashlytics.getInstance().setCustomKey("INTERSTITAL_AD_LOADED", true)
@@ -239,7 +239,7 @@ class MainActivity : AppCompatActivity() {
                         sharedAdsViewModel.extrasPersonalAdsBundle.value
                     )
                 }
-                mInterstitialAd.loadAd(
+                mInterstitialAd?.loadAd(
                     builder.build()
                 )
             }
@@ -249,7 +249,7 @@ class MainActivity : AppCompatActivity() {
     private fun initializeAds() {
         //interstital ads
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = getString(R.string.interstital_ad_unit_id)
+        mInterstitialAd?.adUnitId = getString(R.string.interstital_ad_unit_id)
 
         var builder = AdRequest.Builder()
         if (sharedAdsViewModel.isPersonalizedAds.value!!.not()) {
@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        mInterstitialAd.loadAd(
+        mInterstitialAd?.loadAd(
             builder
                 .addNetworkExtrasBundle(
                     AdMobAdapter::class.java,
@@ -269,10 +269,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAds() {
-        if (mInterstitialAd.isLoaded) {
-            mInterstitialAd.show()
-        } else {
+        mInterstitialAd?.let {
 
+            if (it.isLoaded) {
+                it.show()
+            } else {
+
+            }
         }
     }
 
