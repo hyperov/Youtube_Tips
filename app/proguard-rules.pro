@@ -103,3 +103,7 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -keep class com.nabil.youtubetips.category.model.response.High { *; }
 -keep class com.nabil.youtubetips.category.model.response.Default { *; }
 
+-keep class com.pierfrancescosoffritti.androidyoutubeplayer.** { *; }
+
+-keepnames class com.pierfrancescosoffritti.youtubeplayer.*
+
