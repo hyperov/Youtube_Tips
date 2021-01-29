@@ -55,9 +55,14 @@ android {
             manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            resValue "string", "banner_ad_unit_id", "ca-app-pub-8904130263057154/2977437389"
-            resValue "string", "interstital_ad_unit_id", "ca-app-pub-8904130263057154/8968130666"
-            resValue "string", "native_ad_unit_id", "ca-app-pub-8904130263057154/1049579361"
+//            resValue "string", "banner_ad_unit_id", "ca-app-pub-8904130263057154/2977437389"
+//            resValue "string", "interstital_ad_unit_id", "ca-app-pub-8904130263057154/8968130666"
+//            resValue "string", "native_ad_unit_id", "ca-app-pub-8904130263057154/1049579361"
+
+            //debug
+            resValue "string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "interstital_ad_unit_id", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "native_ad_unit_id", "ca-app-pub-3940256099942544/2247696110"
         }
     }
 
@@ -87,6 +92,16 @@ android {
             dimension "env"
             buildConfigField 'boolean', 'IS_TESTING', 'false'
 
+        }
+    }
+
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
         }
     }
 
