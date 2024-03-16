@@ -1,14 +1,16 @@
 package com.nabil.youtubetips.category.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nabil.youtubetips.category.model.repo.YoutubeRepo
 import com.nabil.youtubetips.category.model.response.VideoItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CategoryViewModel @ViewModelInject constructor(private val repo: YoutubeRepo) : ViewModel() {
+@HiltViewModel
+class CategoryViewModel @Inject constructor(private val repo: YoutubeRepo) : ViewModel() {
 
     val loading = MutableLiveData<Boolean>()
     val error = MutableLiveData(false)

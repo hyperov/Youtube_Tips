@@ -61,7 +61,7 @@ class MainCategoryFragment : Fragment() {
 
         navOptions = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setPopUpTo(navController.graph.startDestination, false)
+            .setPopUpTo(navController.graph.startDestinationId, false)
             .build()
         return navController
     }

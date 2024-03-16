@@ -8,8 +8,8 @@ import com.nabil.youtubetips.home.Prefs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object YoutubeNetworkModule {
 
     @Provides

@@ -1,3 +1,23 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {url  "https://adcolony.bintray.com/AdColony"}
+        maven {url "https://cdn01.static.adfalcon.com/sdk/android/maven"}
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven {url  "https://adcolony.bintray.com/AdColony"}
+        maven {url "https://cdn01.static.adfalcon.com/sdk/android/maven"}
+    }
+}
+
 include ':nativetemplates'
 include ':app'
 rootProject.name = "Youtube Tips"
